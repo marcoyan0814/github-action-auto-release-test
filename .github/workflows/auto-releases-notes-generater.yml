@@ -23,6 +23,7 @@ jobs:
         with:
           token: ${{ github.token }}
           tag: ${{ github.ref_name }}
+          excludeTypes: build
 
       - name: Commit CHANGELOG.md
         uses: stefanzweifel/git-auto-commit-action@v5
@@ -30,7 +31,6 @@ jobs:
           branch: main
           commit_message: 'docs: update CHANGELOG.md for ${{ github.ref_name }} [skip ci]'
           file_pattern: CHANGELOG.md
-          excludeTypes: build
 
       - name: Create Release
         uses: ncipollo/release-action@v1.14.0
