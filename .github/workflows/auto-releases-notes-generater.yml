@@ -1,8 +1,10 @@
 name: Auto Generate Release Notes
 on:
   push:
-    branches:
-      - main
+#    branches:
+#      - main
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,29 +15,57 @@ jobs:
         uses: mathieudutour/github-tag-action@v6.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Generate a changelog
-        uses: orhun/git-cliff-action@v3
-        id: git-cliff
+#      - name: Generate a changelog
+#        uses: orhun/git-cliff-action@v3
+#        id: git-cliff
+#        with:
+#          config: github-keepachangelog.toml
+#          args: --verbose
+#        env:
+#          OUTPUT: CHANGELOG.md
+#          GITHUB_REPO: ${{ github.repository }}
+#      - name: Print the changelog
+#        run: cat "${{ steps.git-cliff.outputs.changelog }}"
+      - name: Get previous tag
+        id: previousTag
+        run: |
+          name=$(git --no-pager tag --sort=creatordate --merged ${{ github.ref_name }} | tail -2 | head -1)
+          echo "previousTag: $name"
+          echo "previousTag=$name" >> $GITHUB_ENV
+
+      - name: Update CHANGELOG
+        id: changelog
+        uses: requarks/changelog-action@v1
         with:
-          config: github-keepachangelog.toml
-          args: --verbose
-        env:
-          OUTPUT: CHANGELOG.md
-          GITHUB_REPO: ${{ github.repository }}
-      - name: Print the changelog
-        run: cat "${{ steps.git-cliff.outputs.changelog }}"
+          token: ${{ github.token }}
+          fromTag: ${{ github.ref_name }}
+          toTag: ${{ env.previousTag }}
+          writeToFile: false
+
       - name: Commit
         run: |
+          cat ${{ steps.changelog.outputs.changes }} >> CHANGELOG.md
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
           set +e
           git add CHANGELOG.md
           git commit -m "docs: Update changelog"
           git push https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git main
-      - name: Create a GitHub release
-        uses: ncipollo/release-action@v1
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1.12.0
         with:
-          tag: ${{ steps.tag_version.outputs.new_tag }}
-          name: Release ${{ steps.tag_version.outputs.new_tag }}
-          #body: ${{ steps.tag_version.outputs.changelog }}
-          body: "${{ steps.git-cliff.outputs.content }}"
+          allowUpdates: true
+          draft: true
+          makeLatest: true
+          name: ${{ github.ref_name }}
+          body: ${{ steps.changelog.outputs.changes }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+#
+#      - name: Create a GitHub release
+#        uses: ncipollo/release-action@v1
+#        with:
+#          tag: ${{ steps.tag_version.outputs.new_tag }}
+#          name: Release ${{ steps.tag_version.outputs.new_tag }}
+#          #body: ${{ steps.tag_version.outputs.changelog }}
+#          body: "${{ steps.git-cliff.outputs.content }}"
