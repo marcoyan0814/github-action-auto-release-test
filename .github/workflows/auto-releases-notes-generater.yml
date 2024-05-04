@@ -9,8 +9,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
 #      - name: Bump version and push tag
 #        id: tag_version
 #        uses: mathieudutour/github-tag-action@v6.2
@@ -27,41 +25,32 @@ jobs:
 #          GITHUB_REPO: ${{ github.repository }}
 #      - name: Print the changelog
 #        run: cat "${{ steps.git-cliff.outputs.changelog }}"
-      - name: Get previous tag
-        id: previousTag
-        run: |
-          name=$(git --no-pager tag --sort=creatordate --merged ${{ github.ref_name }} | tail -2 | head -1)
-          echo "previousTag: $name"
-          echo "previousTag=$name" >> $GITHUB_ENV
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
       - name: Update CHANGELOG
         id: changelog
         uses: requarks/changelog-action@v1
         with:
           token: ${{ github.token }}
-          fromTag: ${{ github.ref_name }}
-          toTag: ${{ env.previousTag }}
-          writeToFile: false
-
-      - name: Commit
-        run: |
-          cat ${{ steps.changelog.outputs.changes }} >> CHANGELOG.md
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          set +e
-          git add CHANGELOG.md
-          git commit -m "docs: Update changelog"
-          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git main
+          tag: ${{ github.ref_name }}
 
       - name: Create Release
         uses: ncipollo/release-action@v1.12.0
         with:
           allowUpdates: true
-          draft: true
+          draft: false
           makeLatest: true
           name: ${{ github.ref_name }}
           body: ${{ steps.changelog.outputs.changes }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ github.token }}
+
+      - name: Commit CHANGELOG.md
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: main
+          commit_message: 'docs: update CHANGELOG.md for ${{ github.ref_name }} [skip ci]'
+          file_pattern: CHANGELOG.md
 #
 #      - name: Create a GitHub release
 #        uses: ncipollo/release-action@v1
