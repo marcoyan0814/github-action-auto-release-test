@@ -1,30 +1,15 @@
-name: Auto Generate Release Notes
+name: Deploy
+
 on:
   push:
-#    branches:
-#      - main
     tags:
       - v[0-9]+.[0-9]+.[0-9]+
+
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-#      - name: Bump version and push tag
-#        id: tag_version
-#        uses: mathieudutour/github-tag-action@v6.2
-#        with:
-#          github_token: ${{ secrets.GITHUB_TOKEN }}
-#      - name: Generate a changelog
-#        uses: orhun/git-cliff-action@v3
-#        id: git-cliff
-#        with:
-#          config: github-keepachangelog.toml
-#          args: --verbose
-#        env:
-#          OUTPUT: CHANGELOG.md
-#          GITHUB_REPO: ${{ github.repository }}
-#      - name: Print the changelog
-#        run: cat "${{ steps.git-cliff.outputs.changelog }}"
       - name: Checkout Code
         uses: actions/checkout@v4
 
@@ -51,11 +36,3 @@ jobs:
           branch: main
           commit_message: 'docs: update CHANGELOG.md for ${{ github.ref_name }} [skip ci]'
           file_pattern: CHANGELOG.md
-#
-#      - name: Create a GitHub release
-#        uses: ncipollo/release-action@v1
-#        with:
-#          tag: ${{ steps.tag_version.outputs.new_tag }}
-#          name: Release ${{ steps.tag_version.outputs.new_tag }}
-#          #body: ${{ steps.tag_version.outputs.changelog }}
-#          body: "${{ steps.git-cliff.outputs.content }}"
