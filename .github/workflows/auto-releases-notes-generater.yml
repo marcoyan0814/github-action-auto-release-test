@@ -21,12 +21,21 @@ jobs:
           args: --verbose
         env:
           OUTPUT: CHANGELOG.md
+          GITHUB_REPO: ${{ github.repository }}
       - name: Print the changelog
         run: cat "${{ steps.git-cliff.outputs.changelog }}"
+      - name: Commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          set +e
+          git add CHANGELOG.md
+          git commit -m "docs: Update changelog"
+          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git <branch>
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
           #body: ${{ steps.tag_version.outputs.changelog }}
-          body: ${{ steps.git-cliff.outputs.changelog }}
+          body: cat "${{ steps.git-cliff.outputs.changelog }}"
