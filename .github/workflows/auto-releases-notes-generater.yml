@@ -31,7 +31,7 @@ jobs:
           set +e
           git add CHANGELOG.md
           git commit -m "docs: Update changelog"
-          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git <branch>
+          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git main
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
