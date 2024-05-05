@@ -1,6 +1,7 @@
 name: Deploy to release
 
-# 手動觸發，在 action 右上點 run workflow 選 main 並且輸入要發佈的版本號碼(ex: v0.0.1)
+# 手動觸發，在 action 右上點 run workflow 選 main 並且輸入要發佈的版本號碼(ex: v0.1.0)
+# 平常一樣自建 tag 並 push ，只有在中版號(x.y.0) 要發佈時才使用此 workflow
 on:
   workflow_dispatch:
     inputs:
@@ -35,6 +36,7 @@ jobs:
       - name: Update Application.php version
         run: echo v${{ steps.version.outputs.version }} > version.txt
 
+      # commit 更新版本資料
       - name: Commit version change
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
@@ -42,7 +44,8 @@ jobs:
           commit_message: 'docs: Update version to v${{ steps.version.outputs.version }}'
           file_pattern: 'version.txt'
 
-      - name: Create new tag
+      # Create new Tag and Push
+      - name: Create new tag and push
         run: |
           git tag v${{ steps.version.outputs.version }}
           git push --tag
@@ -56,13 +59,15 @@ jobs:
           tag: v${{ steps.version.outputs.version }}
           excludeTypes: build
 
+      # commit CHANGELOG.md
       - name: Commit CHANGELOG.md
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           branch: main
-          commit_message: 'docs: update CHANGELOG.md for v${{ steps.version.outputs.version }}'
+          commit_message: 'docs: Update CHANGELOG.md for v${{ steps.version.outputs.version }}'
           file_pattern: CHANGELOG.md
 
+      # release
       - name: Create release
         uses: softprops/action-gh-release@v2
         env:
