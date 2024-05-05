@@ -1,6 +1,6 @@
 name: Deploy to release
 
-# 手動觸發，在 action 右上點 run workflow 選 main 並且輸入要發佈的版本號碼(ex: v0.1.0)
+# 手動觸發，在 action 右上點 run workflow 選 main 並且輸入前一次release本次要發佈的版本號碼(ex: v0.1.0)
 # 平常一樣自建 tag 並 push ，只有在中版號(x.y.0) 要發佈時才使用此 workflow
 on:
   workflow_dispatch:
