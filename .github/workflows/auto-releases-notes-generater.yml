@@ -50,7 +50,7 @@ jobs:
 
       - name: Delete origin tag and Create new tag
         run: |
-          git push --delete origin v${{ steps.version.outputs.version }}"
+          git push --delete origin v${{ steps.version.outputs.version }}
           git tag v${{ steps.version.outputs.version }}"
           git push --tag
 
