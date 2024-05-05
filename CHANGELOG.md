@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.3.0] - 2024-05-05
+### :sparkles: New Features
+- [`ab33605`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/ab336050b49bee3ec67d693d3d5c629b837c63c2) - added x.txt *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
+- [`f887d69`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/f887d69f594b65d25ed65dc77ecd45a9b03fbb20) - added y.txt *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
+
+### :bug: Bug Fixes
+- [`b7421c7`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/b7421c7c5c6193307179589aef2593d41679d96f) - remove x.txt *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
+- [`c24ecf9`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/c24ecf96a9e3cd5cb9f0e6ad541346722c4eee6b) - remove y.txt *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
+
+### :memo: Documentation Changes
+- [`270eb7e`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/270eb7e52f20e1a99c65c0b463fe8e6f5a50657e) - update CHANGELOG.md for v0.1.0 [skip ci] *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
+- [`66fee6e`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/66fee6ef915cb361ba92c96bd098fe9a8dc1e0cf) - update github action workflow *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
+- [`92db6e9`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/92db6e9e9ed6a036d41acf88a7d9b47a15da9abb) - Update version to v0.1.1 *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
+- [`4a1914d`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/4a1914d18d3ff1bd93ab53c61aa401614c1e4e05) - update CHANGELOG.md for v0.1.1 *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
+- [`a912bf8`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/a912bf8e7607483279f474d0e0354613ea0190a7) - update github action workflow *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
+- [`f331adc`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/f331adccb0faf4d569676860bbc3991f03cb2084) - Update version to v0.1.2 *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
+- [`d9fe32b`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/d9fe32bfc196c21b5bb2b96c71c0c5867d3b5089) - update CHANGELOG.md for v0.1.2 *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
+- [`7cff638`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/7cff63881ff41b5b0638ad1a48a50363628d6ebb) - update github action workflow *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
+- [`d902ce5`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/d902ce5bcb549c7f456439751f9849201f370cdb) - Update version to v0.2.0 *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
+- [`c3e5c3a`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/c3e5c3ae6c8eb5ebe46c925c7a657bfc6d9d6148) - Update CHANGELOG.md for v0.2.0 *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
+- [`6ba6ed9`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/6ba6ed9f99315fe731f6acc6ff1ceae8c561ce2e) - update github action workflow *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
+- [`cc29978`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/cc299788b82cef28ac5fc85d55d50e9f8e88d603) - update github action workflow *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
+- [`8f8e820`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/8f8e82061d55ae8299b545247fb383889b9c4a90) - update github action workflow *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
+- [`64a87e7`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/64a87e7088b33e003634cd7c4ea853608fb15d1c) - Update version to v0.3.0 *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
+
+
 ## [v0.2.0] - 2024-05-05
 ### :memo: Documentation Changes
 - [`d902ce5`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/d902ce5bcb549c7f456439751f9849201f370cdb) - Update version to v0.2.0 *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
@@ -96,3 +122,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.1.1]: https://github.com/marcoyan0814/github-action-auto-release-test/compare/v0.1.0...v0.1.1
 [v0.1.2]: https://github.com/marcoyan0814/github-action-auto-release-test/compare/v0.1.1...v0.1.2
 [v0.2.0]: https://github.com/marcoyan0814/github-action-auto-release-test/compare/v0.1.4...v0.2.0
+[v0.3.0]: https://github.com/marcoyan0814/github-action-auto-release-test/compare/v0.1.0...v0.3.0
