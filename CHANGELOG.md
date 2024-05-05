@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.1.0] - 2024-05-05
+### :memo: Documentation Changes
+- [`04fc310`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/04fc310c05a0678804409b61b4e1734c396645a4) - update github action workflow *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
+- [`9ac92a0`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/9ac92a0af6920b3e15ed58fdd31b74ae7149b52a) - Update version to v0.1.0 [skip ci] *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
+
+
 ## [v0.0.21] - 2024-05-05
 ### :memo: Documentation Changes
 - [`516d8e6`](https://github.com/marcoyan0814/github-action-auto-release-test/commit/516d8e6ffbd5655e153a6d42d1de6a567af43588) - update CHANGELOG.md for v0.0.20 [skip ci] *(commit by [@marcoyan0814](https://github.com/marcoyan0814))*
@@ -67,3 +73,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.0.19]: https://github.com/marcoyan0814/github-action-auto-release-test/compare/v0.0.18...v0.0.19
 [v0.0.20]: https://github.com/marcoyan0814/github-action-auto-release-test/compare/v0.0.19...v0.0.20
 [v0.0.21]: https://github.com/marcoyan0814/github-action-auto-release-test/compare/v0.0.20...v0.0.21
+[v0.1.0]: https://github.com/marcoyan0814/github-action-auto-release-test/compare/v0.0.22...v0.1.0
