@@ -41,6 +41,11 @@ jobs:
       - name: Update Application.php version
         run: echo v${{ steps.version.outputs.version }} > version.txt
 
+      - name: Delete origin tag
+        run: |
+          git tag --delete v${{ steps.version.outputs.version }} 
+          git push --delete origin v${{ steps.version.outputs.version }}
+
       - name: Commit CHANGELOG.md
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
@@ -48,11 +53,8 @@ jobs:
           commit_message: 'docs: update CHANGELOG.md for v${{ steps.version.outputs.version }} [skip ci]'
           file_pattern: 'CHANGELOG.md version.txt'
 
-      - name: Delete origin tag and Create new tag
+      - name: Create new tag
         run: |
-          git pull origin main
-          git tag --delete v${{ steps.version.outputs.version }} 
-          git push --delete origin v${{ steps.version.outputs.version }}
           git tag v${{ steps.version.outputs.version }}
           git push --tag
 
