@@ -8,6 +8,9 @@ on:
       version:
         description: 'Version to release'
         required: true
+      prev_version:
+        description: '上一次Release的版本號'
+        required: true
 
 permissions:
   contents: write
@@ -31,10 +34,12 @@ jobs:
         run: |
           VERSION=${{ inputs.version }}
           echo "version=${VERSION#v}" >> "$GITHUB_OUTPUT"
+          PREV_VERSION=${{ inputs.prev_version }}
+          echo "prev_version=${PREV_VERSION}" >> "$GITHUB_OUTPUT"
 
       # 更新版本號碼
       - name: Update Application.php version
-        run: echo v${{ steps.version.outputs.version }} > version.txt
+        run: echo v${{ steps.version.outputs.version }} > ./public/version.txt
 
       # commit 更新版本資料
       - name: Commit version change
@@ -42,7 +47,7 @@ jobs:
         with:
           branch: main
           commit_message: 'docs: Update version to v${{ steps.version.outputs.version }}'
-          file_pattern: 'version.txt'
+          file_pattern: 'public/version.txt'
 
       # Create new Tag and Push
       - name: Create new tag and push
@@ -56,7 +61,11 @@ jobs:
         uses: requarks/changelog-action@v1
         with:
           token: ${{ github.token }}
-          tag: v${{ steps.version.outputs.version }}
+          #tag: v${{ steps.version.outputs.version }}
+          # 本次版本
+          fromTag: v${{ steps.version.outputs.version }}
+          # 上一個版本
+          toTag: ${{ steps.version.outputs.prev_version }}
           excludeTypes: build
 
       # commit CHANGELOG.md
