@@ -38,7 +38,7 @@ jobs:
           echo "prev_version=${PREV_VERSION}" >> "$GITHUB_OUTPUT"
 
       # 更新版本號碼
-      - name: Update Application.php version
+      - name: Update Application version
         run: echo v${{ steps.version.outputs.version }} > ./public/version.txt
 
       # commit 更新版本資料
