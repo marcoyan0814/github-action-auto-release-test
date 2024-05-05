@@ -39,7 +39,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           branch: main
-          commit_message: 'docs: Update version to v${{ steps.version.outputs.version }} [skip ci]'
+          commit_message: 'docs: Update version to v${{ steps.version.outputs.version }}'
           file_pattern: 'version.txt'
 
       - name: Create new tag
@@ -60,15 +60,15 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           branch: main
-          commit_message: 'docs: update CHANGELOG.md for v${{ steps.version.outputs.version }} [skip ci]'
+          commit_message: 'docs: update CHANGELOG.md for v${{ steps.version.outputs.version }}'
           file_pattern: CHANGELOG.md
 
-#      - name: Create Release
-#        uses: ncipollo/release-action@v1.14.0
-#        with:
-#          allowUpdates: true
-#          draft: false
-#          makeLatest: true
-#          name: ${{ github.ref_name }}
-#          body: ${{ steps.changelog.outputs.changes }}
-#          token: ${{ github.token }}
+      - name: Create Release
+        uses: ncipollo/release-action@v1.14.0
+        with:
+          allowUpdates: true
+          draft: false
+          makeLatest: true
+          name: ${{ github.ref_name }}
+          body: ${{ steps.changelog.outputs.changes }}
+          token: ${{ github.token }}
