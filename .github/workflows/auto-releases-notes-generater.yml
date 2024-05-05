@@ -35,11 +35,11 @@ jobs:
         uses: requarks/changelog-action@v1
         with:
           token: ${{ github.token }}
-          tag: v'${{ steps.version.outputs.version }}'
+          tag: v${{ steps.version.outputs.version }}
           excludeTypes: build
 
       - name: Update Application.php version
-        run: echo v'${{ steps.version.outputs.version }}' > version.txt
+        run: echo v${{ steps.version.outputs.version }} > version.txt
 
       - name: Commit CHANGELOG.md
         uses: stefanzweifel/git-auto-commit-action@v5
