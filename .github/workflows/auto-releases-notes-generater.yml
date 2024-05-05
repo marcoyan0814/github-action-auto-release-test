@@ -50,16 +50,17 @@ jobs:
 
       - name: Delete origin tag and Create new tag
         run: |
+          git tag --delete v${{ steps.version.outputs.version }} 
           git push --delete origin v${{ steps.version.outputs.version }}
           git tag v${{ steps.version.outputs.version }}
           git push --tag
 
-      - name: Create Release
-        uses: ncipollo/release-action@v1.14.0
-        with:
-          allowUpdates: true
-          draft: false
-          makeLatest: true
-          name: ${{ github.ref_name }}
-          body: ${{ steps.changelog.outputs.changes }}
-          token: ${{ github.token }}
+#      - name: Create Release
+#        uses: ncipollo/release-action@v1.14.0
+#        with:
+#          allowUpdates: true
+#          draft: false
+#          makeLatest: true
+#          name: ${{ github.ref_name }}
+#          body: ${{ steps.changelog.outputs.changes }}
+#          token: ${{ github.token }}
